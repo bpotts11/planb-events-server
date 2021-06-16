@@ -1,0 +1,9 @@
+[
+    {
+        "model": "planbapi.tag",
+        "pk": 1,
+        "fields": {
+            "label": "Buffet"
+        }
+    }
+]

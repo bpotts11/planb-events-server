@@ -1,0 +1,12 @@
+[
+    {
+        "model": "planbapi.product",
+        "pk": 1,
+        "fields": {
+            "name": "BBQ Buffet for 100 people",
+            "price": 200.00,
+            "description": "This is a buffet that will feed up to 100 people.",
+            "vendor_id": 1
+        }
+    }
+]

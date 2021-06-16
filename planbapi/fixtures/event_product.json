@@ -1,0 +1,10 @@
+[
+    {
+        "model": "planbapi.eventproduct",
+        "pk": 1,
+        "fields": {
+            "product_id": 1,
+            "event_id": 1
+        }
+    }
+]

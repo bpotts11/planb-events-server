@@ -1,0 +1,10 @@
+[
+    {
+        "model": "planbapi.favorite",
+        "pk": 1,
+        "fields": {
+            "customer_id": 1,
+            "vendor_id": 1
+        }
+    }
+]
