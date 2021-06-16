@@ -1,0 +1,58 @@
+[
+    {
+        "model": "planbapi.category",
+        "pk": 1,
+        "fields": {
+            "label": "Venue"
+        }
+    },
+    {
+        "model": "planbapi.category",
+        "pk": 2,
+        "fields": {
+            "label": "Catering"
+        }
+    },
+    {
+        "model": "planbapi.category",
+        "pk": 3,
+        "fields": {
+            "label": "Photography"
+        }
+    },
+    {
+        "model": "planbapi.category",
+        "pk": 4,
+        "fields": {
+            "label": "Planner"
+        }
+    },
+    {
+        "model": "planbapi.category",
+        "pk": 5,
+        "fields": {
+            "label": "Designer"
+        }
+    },
+    {
+        "model": "planbapi.category",
+        "pk": 6,
+        "fields": {
+            "label": "Florist"
+        }
+    },
+    {
+        "model": "planbapi.category",
+        "pk": 7,
+        "fields": {
+            "label": "Party Rental Supplier"
+        }
+    },
+    {
+        "model": "planbapi.category",
+        "pk": 8,
+        "fields": {
+            "label": "Entertainment"
+        }
+    }
+]

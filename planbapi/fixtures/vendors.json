@@ -1,0 +1,16 @@
+[
+    {
+        "model": "planbapi.vendor",
+        "pk": 1,
+        "fields": {
+            "user": 3,
+            "business_name": "Yummy Catering",
+            "about": "We provide delicious food for your event",
+            "category_id": 2,
+            "phone": "(123)456-7890",
+            "address": "123 Street",
+            "city": "Murfreesboro",
+            "state": "TN"
+        }
+    }
+]
