@@ -16,22 +16,26 @@ def login_user(request):
       request -- The full HTTP request object
     '''
 
-    body = request.body.decode('utf-8')
-    req_body = json.loads(body)
+    req_body = json.loads(request.body.decode())
 
     # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
 
         # Use the built-in authenticate method to verify
         email = req_body['email']
-        pass_word = req_body['password']
-        authenticated_user = authenticate(username=email, password=pass_word)
+        password = req_body['password']
+        authenticated_user = authenticate(username=email, password=password)
 
         # If authentication was successful, respond with their token
-        if authenticated_user is not None:
+        if authenticated_user is not None and authenticated_user.is_staff == True:
             token = Token.objects.get(user=authenticated_user)
             data = json.dumps(
-                {"valid": True, "token": token.key, "id": authenticated_user.id})
+                {"valid": True, "token": token.key, "is_staff": True})
+            return HttpResponse(data, content_type='application/json')
+
+        if authenticated_user is not None:
+            token = Token.objects.get(user=authenticated_user)
+            data = json.dumps({"valid": True, "token": token.key})
             return HttpResponse(data, content_type='application/json')
 
         else:
