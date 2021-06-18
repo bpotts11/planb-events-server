@@ -6,7 +6,7 @@
             "name": "Wedding",
             "date": "2021-06-25",
             "budget": 10000.00,
-            "customer_id": 2
+            "customer_id": 1
         }
     },
     {
@@ -16,7 +16,7 @@
             "name": "Birthday",
             "date": "2021-06-20",
             "budget": 200.00,
-            "customer_id": 2
+            "customer_id": 1
         }
     }
 ]
