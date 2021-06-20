@@ -11,7 +11,6 @@ from planbapi.models import *
 @csrf_exempt
 def login_user(request):
     '''Handles the authentication of a user
-
     Method arguments:
       request -- The full HTTP request object
     '''
@@ -49,7 +48,6 @@ def login_user(request):
 @csrf_exempt
 def register_user(request):
     '''Handles the creation of a new user for authentication
-
     Method arguments:
       request -- The full HTTP request object
     '''

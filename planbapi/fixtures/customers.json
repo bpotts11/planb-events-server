@@ -3,7 +3,7 @@
         "model": "planbapi.customer",
         "pk": 1,
         "fields": {
-            "user": 1
+            "user": 2
         }
     }
 ]
