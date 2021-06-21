@@ -12,7 +12,7 @@ from planbapi.models import *
 class EventViewSet(ViewSet):
     def list(self, request):
         customer = Customer.objects.get(user=request.auth.user)
-        events = Event.objects.order_by('date')
+        events = Event.objects.filter(customer=customer).order_by('date')
 
         current_user = self.request.query_params.get('customer', None)
         if current_user is not None:
@@ -21,24 +21,6 @@ class EventViewSet(ViewSet):
         serializer = EventSerializer(
             events, many=True, context={'request': request})
         return Response(serializer.data)
-
-    # def list(self, request):
-    #     """Handle GET requests to events resource
-    #     Returns:
-    #         Response -- JSON serialized list of events
-    #     """
-    #     # Get the current authenticated user
-    #     planb_customer = Customer.objects.get(user=request.auth.user)
-    #     events = Event.objects.order_by('date')
-
-    #     # Support filtering posts by user
-    #     current_user = self.request.query_params.get('customer', None)
-    #     if current_user is not None:
-    #         events = events.filter(user=planb_customer)
-
-    #     serializer = EventSerializer(
-    #         events, many=True, context={'request': request})
-    #     return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         """Handle GET requests for single post
