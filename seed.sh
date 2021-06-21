@@ -14,3 +14,4 @@ python3 manage.py loaddata products
 python3 manage.py loaddata product_tag
 python3 manage.py loaddata event_product
 python3 manage.py loaddata favorite
+python manage.py createsuperuser
