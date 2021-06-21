@@ -79,7 +79,7 @@ class EventViewSet(ViewSet):
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
-    def destroy(self, request, pk):
+    def destroy(self, request, pk=None):
         """Handle DELETE requests for a single post
         Returns:
             Response -- 200, 404, or 500 status code
@@ -95,6 +95,25 @@ class EventViewSet(ViewSet):
 
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def update(self, request, pk=None):
+        """Handle PUT requests for a game
+
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+        event = Event.objects.get(pk=pk)
+
+        event.name = request.data["name"]
+        event.date = request.data["date"]
+        event.budget = request.data["budget"]
+
+        try:
+            event.save()
+        except ValidationError as ex:
+            return Response({'reason': ex.message}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
 
 
 class EventSerializer(serializers.ModelSerializer):
