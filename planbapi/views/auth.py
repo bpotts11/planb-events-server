@@ -28,13 +28,16 @@ def login_user(request):
         # If authentication was successful, respond with their token
         if authenticated_user is not None and authenticated_user.is_staff == True:
             token = Token.objects.get(user=authenticated_user)
+            vendor = Vendor.objects.get(user=authenticated_user)
             data = json.dumps(
-                {"valid": True, "token": token.key, "is_staff": True})
+                {"valid": True, "token": token.key, "is_staff": True, "vendor_id": vendor.id})
             return HttpResponse(data, content_type='application/json')
 
         if authenticated_user is not None:
             token = Token.objects.get(user=authenticated_user)
-            data = json.dumps({"valid": True, "token": token.key})
+            customer = Customer.objects.get(user=authenticated_user)
+            data = json.dumps(
+                {"valid": True, "token": token.key, "customer_id": customer.id})
             return HttpResponse(data, content_type='application/json')
 
         else:
