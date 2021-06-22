@@ -103,8 +103,57 @@ class EventViewSet(ViewSet):
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
+    @action(methods=['post', 'delete'], detail=True)
+    def product(self, request, pk=None):
+        if request.method == "POST":
+            event = Event.objects.get(pk=pk)
+            product = Product.objects.get(pk=request.data['productId'])
+
+            try:
+                adding = EventProduct.objects.get(
+                    event=event, product=product
+                )
+                return Response(
+                    {'message': 'Event already used this product.'},
+                    status=status.HTTP_204_NO_CONTENT
+                )
+            except EventProduct.DoesNotExist:
+                adding = EventProduct()
+                adding.event = event
+                adding.product = product
+                adding.save()
+
+                return Response({}, status=status.HTTP_201_CREATED)
+
+        elif request.method == "DELETE":
+            try:
+                event = Event.objects.get(pk=pk)
+            except Event.DoesNotExist:
+                return Response(
+                    {'message': 'Event does not exist.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # user = RareUser.objects.get(user=request.auth.user)
+            product = Product.objects.get(pk=request.data['productId'])
+
+            try:
+                reacting = EventProduct.objects.get(
+                    event=event, product=product
+                )
+                reacting.delete()
+                return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+            except EventProduct.DoesNotExist:
+                return Response(
+                    {'message': 'User has not used this product.'},
+                    status=status.HTTP_404_NOT_FOUND
+                )
+
+        return Response({}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id', 'name', 'date', 'budget', 'customer')
+        fields = ('id', 'name', 'date', 'budget', 'customer', 'products')

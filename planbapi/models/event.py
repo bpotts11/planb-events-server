@@ -6,3 +6,5 @@ class Event(models.Model):
     date = models.DateField()
     budget = models.FloatField()
     customer = models.ForeignKey("Customer", on_delete=models.CASCADE)
+    products = models.ManyToManyField(
+        "Product", through="EventProduct", related_name="products")
