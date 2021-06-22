@@ -19,7 +19,7 @@ class EventViewSet(ViewSet):
         customer = Customer.objects.get(user=request.auth.user)
         events = Event.objects.filter(customer=customer).order_by('date')
 
-        # Support filtering posts by user
+        # Support filtering events by user
         current_user = self.request.query_params.get('customer', None)
         if current_user is not None:
             events = events.filter(user=customer)
@@ -29,9 +29,9 @@ class EventViewSet(ViewSet):
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        """Handle GET requests for single post
+        """Handle GET requests for single event
         Returns:
-            Response -- JSON serialized game instance
+            Response -- JSON serialized event instance
         """
         try:
             event = Event.objects.get(pk=pk)
@@ -44,7 +44,7 @@ class EventViewSet(ViewSet):
         """Handle POST operations
 
         Returns:
-            Response -- JSON serialized post instance
+            Response -- JSON serialized event instance
         """
 
         # Uses the token passed in the `Authorization` header
@@ -68,7 +68,7 @@ class EventViewSet(ViewSet):
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk=None):
-        """Handle DELETE requests for a single post
+        """Handle DELETE requests for a single event
         Returns:
             Response -- 200, 404, or 500 status code
         """
