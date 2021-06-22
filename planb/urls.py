@@ -6,13 +6,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-from planbapi.views import register_user, login_user, EventViewSet, ProductViewSet
+from planbapi.views import register_user, login_user, EventViewSet, ProductViewSet, VendorViewSet
 from planbapi.models import *
 
 # pylint: disable=invalid-name
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'events', EventViewSet, 'event')
 router.register(r'products', ProductViewSet, 'product')
+router.register(r'vendors', VendorViewSet, 'vendor')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
