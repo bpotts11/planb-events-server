@@ -17,7 +17,7 @@ class ProductViewSet(ViewSet):
         """
         # Get the current authenticated user
         vendor = Vendor.objects.get(user=request.auth.user)
-        products = Product.objects.filter(vendor=vendor)
+        products = Product.objects.filter(vendor=vendor).order_by('name')
 
         # Support filtering products by user
         current_user = self.request.query_params.get('vendor', None)
