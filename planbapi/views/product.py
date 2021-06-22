@@ -16,13 +16,21 @@ class ProductViewSet(ViewSet):
             Response -- JSON serialized list of products
         """
         # Get the current authenticated user
-        vendor = Vendor.objects.get(user=request.auth.user)
-        products = Product.objects.filter(vendor=vendor).order_by('name')
+        current_customer_user = self.request.query_params.get('customer', None)
+        current_vendor_user = self.request.query_params.get('vendor', None)
+        products = Product.objects.all()
+        if current_customer_user is not None:
+            customer = Customer.objects.get(user=request.auth.user)
+        if current_vendor_user is not None:
+            vendor = Vendor.objects.get(user=request.auth.user)
+            products = Product.objects.filter(vendor=vendor).order_by('name')
 
         # Support filtering products by user
-        current_user = self.request.query_params.get('vendor', None)
-        if current_user is not None:
-            products = products.filter(user=vendor)
+
+        # if current_vendor_user is not None:
+        #     products = products.filter(user=vendor)
+
+        # if current_customer_user is not None:
 
         serializer = ProductSerializer(
             products, many=True, context={'request': request})
@@ -110,3 +118,4 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ('id', 'name', 'price', 'description', 'vendor')
+        depth = 1

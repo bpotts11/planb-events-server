@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseServerError
 from rest_framework import status
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -104,6 +105,7 @@ class EventViewSet(ViewSet):
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
     @action(methods=['post', 'delete'], detail=True)
+    @csrf_exempt
     def product(self, request, pk=None):
         if request.method == "POST":
             event = Event.objects.get(pk=pk)
@@ -157,3 +159,4 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ('id', 'name', 'date', 'budget', 'customer', 'products')
+        depth = 1
