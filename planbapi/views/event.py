@@ -136,7 +136,6 @@ class EventViewSet(ViewSet):
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
-            # user = RareUser.objects.get(user=request.auth.user)
             product = Product.objects.get(pk=request.data['productId'])
 
             try:
