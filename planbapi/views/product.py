@@ -25,13 +25,6 @@ class ProductViewSet(ViewSet):
             vendor = Vendor.objects.get(user=request.auth.user)
             products = Product.objects.filter(vendor=vendor).order_by('name')
 
-        # Support filtering products by user
-
-        # if current_vendor_user is not None:
-        #     products = products.filter(user=vendor)
-
-        # if current_customer_user is not None:
-
         serializer = ProductSerializer(
             products, many=True, context={'request': request})
         return Response(serializer.data)
