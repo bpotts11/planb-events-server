@@ -1,73 +1,73 @@
-# planb-events-server
+# PlanB Events
 
-# Bangazon Platform API
+## Motive
+1. Utilize and expand knowledge of Django Rest Framework and React
+2. Create an app that allows a user to plan multiple events at a time all while staying organized and on budget.
 
-## Prerequisites
+## What is PlanB Events?
+PlanB Events is an app that connects event planners to vendors who offer products/services.With PlanB, the planner is able to keep track of multiple events, while keeping track of their budget and having a point of contact for the vendor. The vendor is able to connect customers looking for their service/products.
 
-### Mac OS
+### Installation Instructions
 
-```sh
-brew install libtiff libjpeg webp little-cms2
+Clone planb-events-server repository (https://github.com/bpotts11/planb-events-server)
+
+Clone planb-events-client repository (https://github.com/bpotts11/planb-events-client)
+
+## Client
+Run a json-server from the api 
+```
+npm install
+npm start 
+```
+## Server
+1. Run pipenv shell
+2. Run pipenv install
+3. Type the next 3 lines into to terminal
+
+```
+chmod utx seed.sh
+```
+```
+./seed_data.sh
 ```
 
-### Linux (WSL)
-
-```sh
-sudo apt-get install libtiff5-dev libjpeg8-dev libopenjp2-7-dev zlib1g-dev \
-    libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk \
-    libharfbuzz-dev libfribidi-dev libxcb1-dev
+```
+python3 manage.py runserver
 ```
 
-### Install apidoc
+login using fixture data
 
-```sh
-npm install apidoc -g
-```
+### Features
+- login/registration 
+- Event and Product features have full CRUD functionality
+- Two user types: authenticated Vendot and authenticated Customer(planner)
 
-## Setup
+### ERD
+![PlanB ERD](./images/PlanBERD.png)
 
-1. Clone this repository and change to the directory in the terminal.
-1. Run `pipenv shell`
-1. Run `pipenv install`
-1. Type this exact thing into the terminal to run the migrations and seed the database: `./seed_data.sh`
+### Wireframe
+(https://www.figma.com/file/f62kRtw9BQptjyxxGytDD3/PlanB-Events?node-id=16%3A54)
 
-Now that your database is set up all you have to do is run the command:
+### Support
+Fill out a support ticket if you discover any major bugs to address. 
 
-```sh
-python manage.py runserver
-```
+### Roadmap
+Planned features include: 
+- A planner is able to seach and filter vendor's by category
+- A vendor can create tags to better describe their products. 
+- A SuperUser/admin can create categories
+- A planner can message the vendor.
 
-## Bangazon ERD
+### Contributing
+Feel free to fork the repository and make pull requests. That said, I have no plans to maintain this project.
 
-Open the [Bangazon database diagram](https://dbdiagram.io/d/5bad7831a3794b0014b3ccc7) in the browser to view the tables and relationships for your database. Note that the tables names and field names are written in Pascal case, and not in snake case. Your database has everything in snake case, so while the field names are different, the resources and relationships are identical to the ERD.
+### Authors & Acknowledgments
+[Brittney Potts](https://github.com/bpotts11)
 
-## Postman Request Collection
+Special thanks to  
+[Scott Silver](https://github.com/Scott47) &
+[Hannah Hall](https://github.com/hannahhall)
+for all of the help and support on this project
 
-1. Open Postman
-1. Click Import from the navbar
-1. Choose the Link option
-1. Paste in this URL:
-    `https://www.getpostman.com/collections/c29b98258d312bf240b7`
-1. Your should be prompted to import **Bangazon Python API**.
-1. Click the Import button to complete the process.
-
-To test it out, expand the Profile sub-collection, double-click on Login and send the request. You should get a response back that looks like this.
-
-```json
-{
-    "valid": true,
-    "token": "9ba45f09651c5b0c404f37a2d2572c026c146690",
-    "id": 5
-}
-```
-
-## Documentation
-
-To view browser-based documentation for the project, follow these steps.
-
-1. Run `./renderdocs.sh`
-1. `cd docs`
-1. Then start a simple web server like `http-server` or `serve`.
-1. In your web browser, go to the URL provided by your web server.
-
-![documentation site](./bangazon-docs.png)
+## A Note About Authentication
+The login and registration code I use is fake, completely insecure, and would never be implemented in a professional application. It is a simulation authentication using very simplistic tools, because authentication is not a learning objective of students at NSS.
