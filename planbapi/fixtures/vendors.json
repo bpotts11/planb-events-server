@@ -3,7 +3,7 @@
         "model": "planbapi.vendor",
         "pk": 1,
         "fields": {
-            "user": 2,
+            "user": 1,
             "business_name": "Yummy Catering",
             "about": "We provide delicious food for your event",
             "category_id": 2,
