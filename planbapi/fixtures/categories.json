@@ -54,5 +54,19 @@
         "fields": {
             "label": "Entertainment"
         }
+    },
+    {
+        "model": "planbapi.category",
+        "pk": 9,
+        "fields": {
+            "label": "Bartender"
+        }
+    },
+    {
+        "model": "planbapi.category",
+        "pk": 10,
+        "fields": {
+            "label": "Alcohol"
+        }
     }
 ]
